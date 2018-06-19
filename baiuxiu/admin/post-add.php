@@ -151,13 +151,7 @@ $(function(){
   });
   //富文本编辑器功能
   CKEDITOR.replace('content');
-
-
-
-
-
-
-
+  //富文本编辑器功能完成
 })
 
 
