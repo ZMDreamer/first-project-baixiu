@@ -15,7 +15,6 @@ checkLogin();
 </head>
 <body>
   <script>NProgress.start()</script>
-
   <div class="main">
     <!-- <nav class="navbar">
       <button class="btn btn-default navbar-btn fa fa-bars"></button>
@@ -41,11 +40,7 @@ checkLogin();
           <button class="btn btn-danger btn-sm">批量删除</button>
         </div>
         <ul class="pagination pagination-sm pull-right">
-          <li><a href="#">上一页</a></li>
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">下一页</a></li>
+          
         </ul>
       </div>
       <table class="table table-striped table-bordered table-hover">
@@ -61,7 +56,7 @@ checkLogin();
           </tr>
         </thead>
         <tbody>
-          <tr class="danger">
+          <!-- <tr class="danger">
             <td class="text-center"><input type="checkbox"></td>
             <td>大大</td>
             <td>楼主好人，顶一个</td>
@@ -96,7 +91,7 @@ checkLogin();
               <a href="post-add.php" class="btn btn-warning btn-xs">驳回</a>
               <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
             </td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>
@@ -140,10 +135,36 @@ checkLogin();
     </ul>
   </div> -->
   <?php $currentPage = "comments"; ?>
-
   <?php include_once './public/_aside.php'; ?>
-  <script src="../static/assets/vendors/jquery/jquery.js"></script>
-  <script src="../static/assets/vendors/bootstrap/js/bootstrap.js"></script>
   <script>NProgress.done()</script>
+  <script type = "text/art-template" id = "template">
+    {{each data val}}
+      <tr>
+            <td class="text-center"><input type="checkbox"></td>
+            <td>{{val.author}}</td>
+            <td style="width:400px">{{val.content}}</td>
+            <td>{{val.slug}}</td>
+            <td>{{val.created}}</td>
+            <td>
+              {{if val.status == "held" }}
+                待审核
+              {{else if val.status == "approved" }}
+                已准许
+              {{else if val.status == "rejected" }}
+                已拒绝
+              {{else if val.status == "trashed" }}
+                已删除
+              {{/if }}
+            </td>
+            <td class="text-center">
+              <a href="post-add.php" class="btn btn-warning btn-xs">驳回</a>
+              <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
+            </td>
+        </tr>
+  {{/each}}
+  </script>
+  <script src="../static/assets/vendors/require/require.js" data-main = "../static/assets/js/comment.js"></script>
+  
+ 
 </body>
 </html>

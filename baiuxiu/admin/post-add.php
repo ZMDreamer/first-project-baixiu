@@ -33,7 +33,7 @@ checkLogin();
       <!-- <div class="alert alert-danger">
         <strong>错误！</strong>发生XXX错误
       </div> -->
-      <form class="row">
+      <form class="row" id = "data-form">
         <div class="col-md-9">
           <div class="form-group">
             <label for="title">标题</label>
@@ -58,7 +58,7 @@ checkLogin();
           </div>
           <div class="form-group">
             <label for="category">所属分类</label>
-            <select id="category" class="form-control" name="category">
+            <select id="category" class="form-control" name="category_id">
               <option value="1">未分类</option>
               <option value="2">潮生活</option>
             </select>
@@ -75,7 +75,7 @@ checkLogin();
             </select>
           </div>
           <div class="form-group">
-            <button class="btn btn-primary" type="submit">保存</button>
+            <input class="btn btn-primary" type="button" value = "保存" id = "btn-save">
           </div>
         </div>
       </form>
@@ -152,6 +152,28 @@ $(function(){
   //富文本编辑器功能
   CKEDITOR.replace('content');
   //富文本编辑器功能完成
+  //表单类容保存主要注意富文本编辑功能
+  $('#btn-save').on('click',function(){
+    //1、把编辑器 中的内容更新到文本域中的方法：
+          CKEDITOR.instances.content.updateElement();
+        var data = $('#data-form').serialize();
+        $.ajax({
+          type: "post",
+          url: "./api/_addData.php",
+          data: data,
+          dataType: 'json',
+          success: function (res) {
+            if (res.code == 1) {
+              location.reload();
+            }
+          }
+    });
+
+
+
+
+  })
+
 })
 
 
