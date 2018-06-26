@@ -1,3 +1,11 @@
+<?php
+    $sql = "SELECT * from comments
+            ORDER BY created
+            LIMIT 10";
+    $result = select($sql);
+    ?>
+
+
 <div class="aside">
       <div class="widgets">
         <h4>搜索</h4>
@@ -11,7 +19,18 @@
       <div class="widgets">
         <h4>随机推荐</h4>
         <ul class="body random">
-          <li>
+        <?php foreach($result as $key => $value){ ?>
+              <li>
+              <a href="javascript:;">
+              <p class="title"><?php echo $value['status'] ?></p>
+              <p class="reading">阅读(819)</p>
+              <div class="pic">
+                <img src="static/uploads/widget_1.jpg" alt="">
+              </div>
+            </a>
+              </li>
+        <?php } ?>
+          <!-- <li>
             <a href="javascript:;">
               <p class="title">废灯泡的14种玩法 妹子见了都会心动</p>
               <p class="reading">阅读(819)</p>
@@ -55,90 +74,28 @@
                 <img src="static/uploads/widget_5.jpg" alt="">
               </div>
             </a>
-          </li>
+          </li> -->
         </ul>
       </div>
       <div class="widgets">
         <h4>最新评论</h4>
         <ul class="body discuz">
-          <li>
-            <a href="javascript:;">
-              <div class="avatar">
-                <img src="static/uploads/avatar_1.jpg" alt="">
-              </div>
-              <div class="txt">
-                <p>
-                  <span>鲜活</span>9个月前(08-14)说:
-                </p>
-                <p>挺会玩的</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;">
-              <div class="avatar">
-                <img src="static/uploads/avatar_1.jpg" alt="">
-              </div>
-              <div class="txt">
-                <p>
-                  <span>鲜活</span>9个月前(08-14)说:
-                </p>
-                <p>挺会玩的</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;">
-              <div class="avatar">
-                <img src="static/uploads/avatar_2.jpg" alt="">
-              </div>
-              <div class="txt">
-                <p>
-                  <span>鲜活</span>9个月前(08-14)说:
-                </p>
-                <p>挺会玩的</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;">
-              <div class="avatar">
-                <img src="static/uploads/avatar_1.jpg" alt="">
-              </div>
-              <div class="txt">
-                <p>
-                  <span>鲜活</span>9个月前(08-14)说:
-                </p>
-                <p>挺会玩的</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;">
-              <div class="avatar">
-                <img src="static/uploads/avatar_2.jpg" alt="">
-              </div>
-              <div class="txt">
-                <p>
-                  <span>鲜活</span>9个月前(08-14)说:
-                </p>
-                <p>挺会玩的</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:;">
-              <div class="avatar">
-                <img src="static/uploads/avatar_1.jpg" alt="">
-              </div>
-              <div class="txt">
-                <p>
-                  <span>鲜活</span>9个月前(08-14)说:
-                </p>
-                <p>挺会玩的</p>
-              </div>
-            </a>
-          </li>
+        <?php foreach($result as $key => $value){ ?>
+              <li>
+                <a href="javascript:;">
+                  <div class="avatar">
+                    <img src="static/uploads/avatar_1.jpg" alt="">
+                  </div>
+                  <div class="txt">
+                    <p>
+                      <span><?php echo $value['author'] ?></span><?php echo $value['created'] ?>说:
+                    </p>
+                    <p><?php echo $value['email'] ?></p>
+                  </div>
+                </a>
+              </li>
+        <?php } ?>
+         
         </ul>
       </div>
     </div>
