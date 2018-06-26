@@ -60,9 +60,6 @@ $postArr = select($sql);
     $(function(){
         var currentPage = 1;
   $('.loadmore .btn').click(function() {
-      if (condition) {
-          
-      }
       currentPage++;
       var categoryId = location.search.split('=')[1]||2;
         $.ajax({
